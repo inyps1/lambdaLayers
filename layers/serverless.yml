@@ -1,0 +1,18 @@
+service: layers
+
+provider:
+  name: aws
+  runtime: nodejs12.x
+  region: us-east-1
+  stage: ${opt:stage,'dev'}
+
+layers:
+  logging:
+    path: logging
+resources:
+  Outputs:
+    LoggingLayerExport:
+      Value:
+        Ref: LoggingLambdaLayer
+      Export:
+        Name: LoggingLambdaLayer
